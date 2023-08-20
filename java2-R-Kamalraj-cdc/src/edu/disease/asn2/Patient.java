@@ -1,7 +1,9 @@
-package edu.disease.asn1;
+package edu.disease.asn2;
 
 import java.util.Arrays;
 import java.util.UUID;
+
+import edu.disease.asn1.Exposure;
 /**
  * 
  * @author KAMALRAJ
@@ -10,8 +12,8 @@ import java.util.UUID;
  * String firstName
  * String lastName
  */
-public class Patient {
-	protected UUID patientId;
+public class Patient  implements Comparable<Patient>{
+	private UUID patientId;
 	private String firstName;
 	private String lastName;
 	private Exposure[] exposures;
@@ -177,6 +179,18 @@ public class Patient {
 	public String toString() {
 		return "Patient [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", exposures=" + Arrays.toString(exposures) + ", diseaseIds=" + Arrays.toString(diseaseIds) + "]";
+	}
+	/**
+	 * compareTo allow Patirnt class to be sortable in ascending order by the last name, then first name.
+	 *  Sorting should be case insensitive.
+	 */
+	@Override
+	public int compareTo(Patient o) {
+		
+		if(!this.lastName.equalsIgnoreCase(o.lastName)) {
+			return this.lastName.compareToIgnoreCase(o.lastName);
+		}
+		return this.firstName.compareToIgnoreCase(o.firstName);
 	}
 	
 

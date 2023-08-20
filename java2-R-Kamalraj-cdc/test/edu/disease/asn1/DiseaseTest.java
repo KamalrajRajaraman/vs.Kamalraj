@@ -1,17 +1,13 @@
 package edu.disease.asn1;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import  org.junit.jupiter.api.Assertions;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import edu.disease.asn1.Disease;
 
 class DiseaseTest {
 	static Disease d1 = new Disease();
@@ -46,6 +42,50 @@ class DiseaseTest {
 		Disease d2=d1;
 		assertTrue(d1.equals(d2));
 	}
+	@Test
+	public void e1TestEquals() {
+		Disease d1 = null;
+		Disease d2=this.d1;
+		assertFalse(d2.equals(d1));
+	}
+	@Test
+	public void e2TestEquals() {
+		Disease d1 = new Disease();
+		Disease d2 = new Disease();
+		d2.setDiseaseId(new UUID(1,1));
+		assertFalse(d1.equals(d2));
+	}
+	@Test
+	public void e3TestEquals() {
+		Disease d1 = new Disease();
+		d1.setDiseaseId(new UUID(1,1));
+		Disease d2 = new Disease();
+		d2.setDiseaseId(new UUID(1,2));
+		assertFalse(d1.equals(d2));
+	}
+	@Test
+	public void e4TestEquals() {
+		Disease d1 = new Disease();
+		d1.setDiseaseId(new UUID(1,1));
+		Disease d2 = new Disease();
+		d2.setDiseaseId(new UUID(1,1));
+		assertTrue(d1.equals(d2));
+	}
+	@Test
+	public void e5TestEquals() {
+		Disease d1 = new Disease();
+		d1.setDiseaseId(new UUID(1,1));
+		
+		assertFalse(d1.equals("Kamal"));
+	}
+	@Test
+	public void e6TestEquals() {
+		Disease d1 = new Disease();
+		Disease d2 = new Disease();
+		assertTrue(d1.equals(d2));
+	}
+
+
 	
 	@Test
 	public void hTestTOString() {

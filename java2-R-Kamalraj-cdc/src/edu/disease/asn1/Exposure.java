@@ -1,10 +1,8 @@
 package edu.disease.asn1;
-import java.lang.annotation.Documented;
 /**
  * 
  */
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.UUID;
 /**
  * 

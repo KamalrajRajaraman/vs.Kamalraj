@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import edu.disease.asn1.Exposure;
 import edu.disease.asn1.Patient;
@@ -83,7 +84,7 @@ class PatienetTest {
 	public void ktestObjectWithWrongArg() {
 		
 		assertThrows(IllegalArgumentException.class,()-> p2 = new Patient(1,-2));
-		
+	
 		
 	}
 	
@@ -96,20 +97,41 @@ class PatienetTest {
 	@Test
 	public void mTestAddExposures() {
 		Patient p1 = new Patient(1,1);
-		Exposure e1 = new Exposure();
+		LocalDateTime dateTime =  LocalDateTime.now();
+		String exposureType ="D";
+		Exposure e1 = new Exposure(dateTime, exposureType);
 		p1.addExposure(e1);
 		
 	}
-
+	@Test
+	public void l1TestAddDiseaseID() {
+		Patient p1 = new Patient(3,1);
+		UUID[] u = new UUID[] {new UUID(1, 1),new UUID(1, 2),new UUID(1, 3)};
+		for(UUID u1:u) {
+			p1.addDiseseId(u1);
+		}
+		boolean flag=false;
+		UUID [] u2 =p1.getDiseaseIds();
+		for(int i=0;i<u.length;i++) {
+			if(u[i].equals(u2[i])) {
+				flag=true;
+				assertTrue(flag);
+			}
+		}
+		
+	}
+	@Test
+	public void l2TestAddDiseaseID() {
+		Patient p1 = new Patient(3,1);
+		UUID[] u = new UUID[] {new UUID(1, 1),new UUID(1, 2),new UUID(1, 3),new UUID(1,4)};
+		for(UUID u1:u) {
+			try {
+				p1.addDiseseId(u1);
+			}
+			catch (Exception e) {
+				assertEquals("diseseId array is full", e.getMessage());
+			}
+		}		
+	}
 	
-
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

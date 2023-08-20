@@ -1,15 +1,19 @@
 package edu.disease.asn1;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import edu.disease.asn1.Exposure;
-
 class ExposureTest {
+	
+	
 	Exposure e1 ;
 
 	@Test
@@ -27,7 +31,7 @@ class ExposureTest {
 		LocalDateTime dateTime =  LocalDateTime.now();
 		String exposureType ="Dscsc";
 		assertThrows(IllegalArgumentException.class,()->e1 = new Exposure(dateTime, exposureType));
-	
+		
 	}
 	@Test
 	public void ctestGetExposureType() {
@@ -116,6 +120,24 @@ class ExposureTest {
 		Exposure e2 = e1;
 		assertEquals(e1.hashCode(), e2.hashCode());
 	}
+	@Test
+	public void k1TestHashCode() {
+		LocalDateTime dateTime =  null;
+		String exposureType ="I";
+		Exposure e1 = new Exposure(dateTime, exposureType);
+		
+		Exposure e2 = e1;
+		assertEquals(e1.hashCode(), e2.hashCode());
+	}
+	@Test
+	public void k2TestHashCode() {
+		LocalDateTime dateTime =  LocalDateTime.now();
+		String exposureType ="I";
+		Exposure e1 = new Exposure(dateTime, exposureType);
+		e1.patientId=new UUID(1, 1);
+		Exposure e2 = e1;
+		assertEquals(e1.hashCode(), e2.hashCode());
+	}
 	
 	@Test
 	public void lTestEquals() {
@@ -137,6 +159,65 @@ class ExposureTest {
 		Exposure e2 = new Exposure(dateTime2, exposureType2);
 		assertFalse(e1.equals(e2));
 	}
+	@Test
+	public void m2TestEquals() throws InterruptedException {
+		LocalDateTime dateTime =  null;
+		String exposureType ="I";
+		Exposure e1 = new Exposure(dateTime, exposureType);
+		Thread.sleep(1000);
+		LocalDateTime dateTime2 =  LocalDateTime.now();
+		String exposureType2 ="D";
+		Exposure e2 = new Exposure(dateTime2, exposureType2);
+		assertFalse(e1.equals(e2));
+	}
+	@Test
+	public void m3TestEquals() throws InterruptedException {
+		LocalDateTime dateTime =  null;
+		String exposureType ="I";
+		Exposure e1 = new Exposure(dateTime, exposureType);
+		e1.patientId=new UUID(1, 1);
+		Thread.sleep(1000);
+		LocalDateTime dateTime2 =  null;
+		String exposureType2 ="D";
+		Exposure e2 = new Exposure(dateTime2, exposureType2);
+		assertFalse(e1.equals(e2));
+	}
+	@Test
+	public void m5TestEquals() throws InterruptedException {
+		LocalDateTime dateTime =  LocalDateTime.now();
+		String exposureType ="I";
+		Exposure e1 = new Exposure(dateTime, exposureType);
+		Thread.sleep(1000);
+		LocalDateTime dateTime2 =  dateTime;
+		String exposureType2 ="D";
+		Exposure e2 = new Exposure(dateTime2, exposureType2);
+		e2.patientId=new UUID(1, 1);
+		assertFalse(e1.equals(e2));
+	}
+	@Test
+	public void m6TestEquals() throws InterruptedException {
+		LocalDateTime dateTime =  LocalDateTime.now();
+		String exposureType ="I";
+		Exposure e1 = new Exposure(dateTime, exposureType);
+		e1.patientId=new UUID(1, 1);
+		Thread.sleep(1000);
+		LocalDateTime dateTime2 =  dateTime;
+		String exposureType2 ="D";
+		Exposure e2 = new Exposure(dateTime2, exposureType2);
+		e2.patientId=e1.patientId;
+		assertTrue(e1.equals(e2));
+	}
+	@Test
+	public void m1TestEquals() throws InterruptedException {
+		LocalDateTime dateTime =  LocalDateTime.now();
+		String exposureType ="I";
+		Exposure e1 = new Exposure(dateTime, exposureType);
+		Exposure e2 = null;
+		assertFalse(e1.equals(e2));
+	}
+	
+	
+	
 	
 	@Test
 	public void zTestTOString() {
