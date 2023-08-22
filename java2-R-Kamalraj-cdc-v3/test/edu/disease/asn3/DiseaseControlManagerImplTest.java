@@ -1,13 +1,13 @@
-package edu.disease.asn2;
+package edu.disease.asn3;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-import edu.disease.asn1.Exposure;
+import edu.disease.asn3.Exposure;
 
 class DiseaseControlManagerImplTest {
 	static DiseaseControlManager d;
@@ -73,10 +73,10 @@ class DiseaseControlManagerImplTest {
 	@Test
 	public void dtestAddPatientTest2() {
 		d =  new DiseaseControlManagerImpl(2,2);
-		d.addPatient("Kamal","Raj",1,1);
-		d.addPatient("Abi","Raj",1,1);
+		Patient p1 = d.addPatient("Kamal","Raj",1,1);
+		Patient p2 = d.addPatient("Abi","Raj",1,1);
 		try {
-			 d.addPatient("Hari","Haran",1,1);
+			Patient p3 = d.addPatient("Hari","Haran",1,1);
 		}
 		catch (Exception e) {
 			assertEquals("No more Patient can be added to Patient Arrary", e.getMessage());
@@ -171,7 +171,6 @@ class DiseaseControlManagerImplTest {
 		Patient p2 = d.addPatient("Abi","Raj",1,1);
 		p2.setPatientId(new UUID(1,1));
 		
-		
 		Exposure e1 = new Exposure(UUID.randomUUID());
 		d.addExposureToPatient(new UUID(1,2), e1);
 		
@@ -198,8 +197,31 @@ class DiseaseControlManagerImplTest {
 			assertEquals("Patient is not found", e.getMessage());
 		}
 		
+	}
+	@Test
+	public void gtestgetExposure() {
+		d =  new DiseaseControlManagerImpl(2,2);
+		
+		Patient p1 = d.addPatient("Kamal","Raj",1,1);
+		
+		Patient p2 = d.addPatient("Abi","Raj",1,1);
+		
+		Patient[] p =d.getPatient();
+		
+		assertTrue(p1.equals(p[0])&&p2.equals(p[1]));
 		
 		
-
+	}
+	@Test
+	public void htestgetDisease() {
+		d =  new DiseaseControlManagerImpl(2,2);
+		Disease d1 = d.addDisease( "infectious",true);
+		
+		Disease d2 =d.addDisease( "infectious",false);
+		Disease[] d3 = d.getDisease();
+		
+		assertTrue(d1.equals(d3[0])&&d2.equals(d3[1]));
+		
+		
 	}
 }

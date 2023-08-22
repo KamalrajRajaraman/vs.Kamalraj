@@ -1,6 +1,7 @@
-package edu.disease.asn1;
+package edu.disease.asn3;
 
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 /**
@@ -13,16 +14,26 @@ import java.util.UUID;
  * @author	KAMALRAJ
  * 
  */
-public class Exposure  {
+public class Exposure implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private UUID patientId;
 	private LocalDateTime dateTime;
 	private String exposureType;
 	/**
 	 * Initializes a newly created {@code Exposure} object.
+	 * @param	dataTime	the LocalDateTime reference
+	 * @param	exposureType	the String reference
 	 * 
+	 * @throws	Throw an IllegalArgumentException with the appropriate message
+	 * while the supplied exposure type is not "D" and not "I".
+
 	 */
+	
 	public Exposure(UUID patientId) {
 		this.patientId=patientId;
 	}

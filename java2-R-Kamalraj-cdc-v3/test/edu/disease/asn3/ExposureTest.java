@@ -1,17 +1,22 @@
-package edu.disease.asn1;
+package edu.disease.asn3;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
+import edu.disease.asn3.Exposure;
+
 class ExposureTest {
 	
 	
-	Exposure e1 ;
+	
 
 	@Test
 	public void atestGetDataTime() {
@@ -219,7 +224,6 @@ class ExposureTest {
 		assertTrue(e1.toString() instanceof String);
 	
 	}
-	
 	
 	
 	
