@@ -1,7 +1,11 @@
-package edu.disease.asn3;
+package edu.disease.asn6;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
+
+import edu.disease.asn3.Disease;
+import edu.disease.asn3.Exposure;
 
 public interface DiseaseControlManager extends Serializable {
 	/**
@@ -61,12 +65,12 @@ public interface DiseaseControlManager extends Serializable {
 	 * 
 	 * @return
 	 */
-	Disease[] getDisease();
+	List<Disease> getDiseases();
 
 	/**
 	 * Returns Patient Array
 	 * 
 	 * @return
 	 */
-	Patient[] getPatient();
+	List<Patient> getPatients();
 }

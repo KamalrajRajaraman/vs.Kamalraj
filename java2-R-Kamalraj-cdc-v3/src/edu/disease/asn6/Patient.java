@@ -1,21 +1,27 @@
-package edu.disease.asn2;
+package edu.disease.asn6;
 
-import java.util.Arrays;
+import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 
-import edu.disease.asn1.Exposure;
+import edu.disease.asn3.Exposure;
 
 /**
  * 
  * @author KAMALRAJ Patient with the following properties: java.util.UUID
  *         patientId String firstName String lastName
  */
-public class Patient implements Comparable<Patient> {
+public class Patient implements Comparable<Patient>, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private UUID patientId;
 	private String firstName;
 	private String lastName;
-	private Exposure[] exposures;
-	private UUID[] diseaseIds;
+	private List<Exposure> exposures;
+	private List<UUID> diseaseIds;
 
 	/**
 	 * constructor that accepts two parameters. {@code int} maxDiseases- this
@@ -31,20 +37,10 @@ public class Patient implements Comparable<Patient> {
 	 *               max Diseases or maxExposure values cannot be used to initiate
 	 *               the arrays.
 	 */
-	public Patient(int maxDiseases, int maxExposures) {
-		if (maxDiseases > 0) {
-			this.diseaseIds = new UUID[maxDiseases];
-		} else {
-			throw new IllegalArgumentException(
-					"Invalid input for maxDiseases :" + maxDiseases + "The value should not be 0 or negative");
-		}
-		if (maxExposures > 0) {
-			this.exposures = new Exposure[maxExposures];
+	public Patient() {
+		exposures = new LinkedList<>();
+		diseaseIds = new LinkedList<>();
 
-		} else {
-			throw new IllegalArgumentException(
-					"Invalid input for maxExposures : " + maxExposures + "The value should not be 0 or negative");
-		}
 	}
 
 	/**
@@ -60,16 +56,7 @@ public class Patient implements Comparable<Patient> {
 	 *               diseaseIds array is full.
 	 */
 	public void addDiseseId(UUID diseaseId) {
-
-		for (int i = 0; i < diseaseIds.length; i++) {
-			if (diseaseIds[i] == null) {
-				diseaseIds[i] = diseaseId;
-				break;
-			}
-			if (i == diseaseIds.length - 1) {
-				throw new IndexOutOfBoundsException("diseseId array is full");
-			}
-		}
+		this.diseaseIds.add(diseaseId);
 
 	}
 
@@ -84,16 +71,7 @@ public class Patient implements Comparable<Patient> {
 	 *               the exposures array has reached its maximum capacity.
 	 */
 	public void addExposure(Exposure exposure) {
-		for (int i = 0; i < exposures.length; i++) {
-			if (exposures[i] == null) {
-				exposures[i] = exposure;
-				break;
-			}
-			if (i == exposures.length - 1) {
-				throw new IndexOutOfBoundsException("exposures array is full");
-			}
-
-		}
+		this.exposures.add(exposure);
 	}
 
 	/**
@@ -156,7 +134,7 @@ public class Patient implements Comparable<Patient> {
 	 * @return diseaseIds
 	 */
 
-	public UUID[] getDiseaseIds() {
+	public List<UUID> getDiseaseIds() {
 		return diseaseIds;
 	}
 
@@ -165,7 +143,7 @@ public class Patient implements Comparable<Patient> {
 	 * 
 	 * @return exposures
 	 */
-	public Exposure[] getExposures() {
+	public List<Exposure> getExposures() {
 		return exposures;
 	}
 
@@ -197,7 +175,7 @@ public class Patient implements Comparable<Patient> {
 	@Override
 	public String toString() {
 		return "Patient [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", exposures=" + Arrays.toString(exposures) + ", diseaseIds=" + Arrays.toString(diseaseIds) + "]";
+				+ ", exposures=" + exposures + ", diseaseIds=" + diseaseIds + "]";
 	}
 
 	/**

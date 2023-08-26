@@ -3,8 +3,8 @@ package edu.disease.asn1;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
-
-
+import java.text.DateFormat.Field;
+import java.util.Arrays;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Assertions;
@@ -105,8 +105,17 @@ class PatientTest {
 
 	@Test
 	public void iTestTOString() {
-
-		assertTrue(p1.toString() instanceof String);
+		Patient p2 = new Patient(1, 1);
+		UUID patientId = null;
+		String firstName = null;
+		String lastName = null;
+		Exposure[] exposures = {null};
+		UUID[] diseaseIds = {null};
+		String expected = "Patient [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", exposures=" + Arrays.toString(exposures) + ", diseaseIds=" + Arrays.toString(diseaseIds) + "]";
+		String actual = p2.toString();
+	
+		assertEquals(expected, actual);
 
 	}
 
@@ -212,6 +221,17 @@ class PatientTest {
 				assertEquals("exposures array is full", e.getMessage());
 			}
 		}
+	}
+	@Test
+	public void test() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+
+		Patient p1 = new Patient(1, 3);
+		Class c=p1.getClass();
+		java.lang.reflect.Field f =c.getDeclaredField("patientId");
+		f.setAccessible(true);
+	
+		assertNull(	f.get(p1));
+		
 	}
 
 }

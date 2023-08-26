@@ -23,7 +23,7 @@ class ExposureTest {
 		LocalDateTime dateTime =  LocalDateTime.now();
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		assertEquals(dateTime, e1.getDateTime());
 		
 	}
@@ -84,7 +84,7 @@ class ExposureTest {
 		String exposureType ="I";
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);	
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		e1.setExposureType(exposureType);
 		Exposure e2 = e1;
 		assertEquals(e1.hashCode(), e2.hashCode());
@@ -95,7 +95,7 @@ class ExposureTest {
 		String exposureType ="I";
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);	
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		e1.setExposureType(exposureType);
 		Exposure e2 = e1;
 		assertEquals(e1.hashCode(), e2.hashCode());
@@ -107,7 +107,7 @@ class ExposureTest {
 		String exposureType ="I";
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);	
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		e1.setExposureType(exposureType);
 		Exposure e2 = e1;
 		assertTrue(e1.equals(e2));
@@ -119,14 +119,14 @@ class ExposureTest {
 		String exposureType ="I";
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);	
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		e1.setExposureType(exposureType);
 		Thread.sleep(1000);
 		LocalDateTime dateTime2 =  LocalDateTime.now();
 		String exposureType2 ="D";
 		UUID a2 = UUID.randomUUID();
 		Exposure e2 = new Exposure(a2);	
-		e2.setDataTime(dateTime2);
+		e2.setDateTime(dateTime2);
 		e2.setExposureType(exposureType2);
 		assertFalse(e1.equals(e2));
 	}
@@ -136,14 +136,14 @@ class ExposureTest {
 		String exposureType ="I";
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);	
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		e1.setExposureType(exposureType);
 		Thread.sleep(1000);
 		LocalDateTime dateTime2 =  LocalDateTime.now();
 		String exposureType2 ="D";
 		UUID a2 = UUID.randomUUID();
 		Exposure e2 = new Exposure(a2);	
-		e2.setDataTime(dateTime2);
+		e2.setDateTime(dateTime2);
 		e2.setExposureType(exposureType2);
 		assertFalse(e1.equals(e2));
 	}
@@ -153,14 +153,14 @@ class ExposureTest {
 		String exposureType ="I";
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);	
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		e1.setExposureType(exposureType);
 		Thread.sleep(1000);
 		LocalDateTime dateTime2 =  null;
 		String exposureType2 ="D";
 		UUID a2 = UUID.randomUUID();
 		Exposure e2 = new Exposure(a2);	
-		e2.setDataTime(dateTime2);
+		e2.setDateTime(dateTime2);
 		e2.setExposureType(exposureType2);
 		assertFalse(e1.equals(e2));
 	}
@@ -170,14 +170,14 @@ class ExposureTest {
 		String exposureType ="I";
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);	
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		e1.setExposureType(exposureType);
 		Thread.sleep(1000);
 		LocalDateTime dateTime2 =  dateTime;
 		String exposureType2 ="D";
 		UUID a2 = UUID.randomUUID();
 		Exposure e2 = new Exposure(a2);	
-		e2.setDataTime(dateTime2);
+		e2.setDateTime(dateTime2);
 		e2.setExposureType(exposureType2);
 		assertFalse(e1.equals(e2));
 	}
@@ -187,14 +187,14 @@ class ExposureTest {
 		String exposureType ="I";
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);	
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		e1.setExposureType(exposureType);
 		Thread.sleep(1000);
 		LocalDateTime dateTime2 =  dateTime;
 		String exposureType2 ="D";
 		
 		Exposure e2 = new Exposure(a);	
-		e2.setDataTime(dateTime2);
+		e2.setDateTime(dateTime2);
 		e2.setExposureType(exposureType2);
 		assertTrue(e1.equals(e2));
 	}
@@ -204,7 +204,7 @@ class ExposureTest {
 		String exposureType ="I";
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);	
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		e1.setExposureType(exposureType);
 		Exposure e2 = null;
 		assertFalse(e1.equals(e2));
@@ -219,7 +219,7 @@ class ExposureTest {
 		String exposureType ="I";
 		UUID a = UUID.randomUUID();
 		Exposure e1 = new Exposure(a);	
-		e1.setDataTime(dateTime);
+		e1.setDateTime(dateTime);
 		e1.setExposureType(exposureType);
 		assertTrue(e1.toString() instanceof String);
 	

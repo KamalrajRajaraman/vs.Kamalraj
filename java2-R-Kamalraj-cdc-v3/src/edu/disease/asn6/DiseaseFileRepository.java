@@ -1,4 +1,4 @@
-package edu.disease.asn3;
+package edu.disease.asn6;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,10 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
+
+import edu.disease.asn3.Disease;
 
 /**
  * 
- * @author
+ * @author KAMALRAJ
  *
  */
 public class DiseaseFileRepository {
@@ -26,7 +29,8 @@ public class DiseaseFileRepository {
 	 * @param patient
 	 * @throws IOException
 	 */
-	public void save(Disease[] disease, Patient[] patient) throws IOException {
+	public void save(List<Disease> disease, List<Patient> patient) throws IOException {
+
 		FileOutputStream fos1 = new FileOutputStream(folderPath + "\\diseases.dat");
 		ObjectOutputStream oos1 = new ObjectOutputStream(fos1);
 		oos1.writeObject(disease);
@@ -65,7 +69,7 @@ public class DiseaseFileRepository {
 		if (f1.exists()) {
 			FileInputStream fis1 = new FileInputStream(folderPath + "\\diseases.dat");
 			ObjectInputStream ois1 = new ObjectInputStream(fis1);
-			dp.setDiseases((Disease[]) ois1.readObject());
+			dp.setDiseases((List<Disease>) ois1.readObject());
 			ois1.close();
 		}
 
@@ -73,7 +77,7 @@ public class DiseaseFileRepository {
 		if (f2.exists()) {
 			FileInputStream fis2 = new FileInputStream(folderPath + "\\patients.dat");
 			ObjectInputStream ois2 = new ObjectInputStream(fis2);
-			dp.setPatient((Patient[]) ois2.readObject());
+			dp.setPatient((List<Patient>) ois2.readObject());
 			ois2.close();
 		}
 

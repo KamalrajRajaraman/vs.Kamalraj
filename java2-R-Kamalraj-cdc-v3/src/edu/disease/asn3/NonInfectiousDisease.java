@@ -1,6 +1,6 @@
 package edu.disease.asn3;
 
-public class NonInfectiousDisease extends  Disease {
+public class NonInfectiousDisease extends Disease {
 
 	/**
 	 * 
@@ -9,7 +9,8 @@ public class NonInfectiousDisease extends  Disease {
 
 	@Override
 	public String[] getExamples() {
-		return new String[] {"NonInfectiousDisease1","NonInfectiousDisease2","NonInfectiousDisease3","NonInfectiousDisease4"};
+		return new String[] { "NonInfectiousDisease1", "NonInfectiousDisease2", "NonInfectiousDisease3",
+				"NonInfectiousDisease4" };
 	}
 
 }
